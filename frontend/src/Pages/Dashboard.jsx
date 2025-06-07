@@ -1,15 +1,31 @@
 import React from 'react'
 import ProfileDashboardBar from '../Components/ProfileDashboardBar'
+import StoryCard from '../Components/storyCard'
 
 const Dashboard = () => {
 
     //find profile with id
     return (
-        <div className='grid grid-cols-6'>
-            <ProfileDashboardBar />
-            <p className='col-span-5'>
-                Jimin’s paintbrush swishes across the canvas. Gold streaks across beautiful black hair, sharp eyebrows, sunken cheeks, and a long, slender neck, not littered with red rings. She’s a regal queen, a woman of wonder, who once promised Jimin the world if he lent her his crown. But it melts in gold, dripping down her cheeks, washing away the royal foundation to reveal the wretched peasant underneath.
-            </p>
+        <div>
+            <div className='fixed w-1/6 '>
+                <ProfileDashboardBar />
+            </div>
+            <div className='w-5/6 ml-auto'>
+                <div className=' bg-secondary p-4 flex justify-center mx-auto '>
+                    <h3 className='card-title text-3xl mx-auto'> Stories </h3>
+                </div>
+                <div className='m-10' >
+                    <StoryCard />
+                    <StoryCard />
+                    <StoryCard />
+                    <StoryCard />
+                    <StoryCard />
+                    <StoryCard />
+                    <StoryCard />
+
+                </div>
+
+            </div>
         </div>
     )
 }
