@@ -12,4 +12,6 @@ const StoryCard = () => {
     )
 }
 
+
+
 export default StoryCard

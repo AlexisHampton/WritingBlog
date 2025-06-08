@@ -1,12 +1,33 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Navbar from '../Components/Navbar';
+import { api } from '../App';
 
 const LoginPage = () => {
 
-    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [hasErrorLogin, setErrorLogin] = useState(false);
+
+    const nav = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const params = `email=${email}&password=${password}`;
+            const res = await fetch(api + "users/login?" + params);
+            const { id } = await res.json();
+
+            console.log(id);
+            nav(`/dashboard/${id}`)
+
+        } catch (error) {
+
+            setErrorLogin(true);
+            console.log("Error logging in in login page", error);
+        }
+    }
 
     return (
         <div className='min-h-full'>
@@ -16,15 +37,15 @@ const LoginPage = () => {
                     <div className='card mt-10 bg-base-300'>
                         <div className='card-body'>
                             <h3 className='card-title '> Log in to your Writing account</h3>
-                            <form className='form'>
+                            <form onSubmit={(e) => handleSubmit(e)} className='form'>
                                 <div className='form-control'>
                                     <label className='label mt-4'>
-                                        <span className="label-text"> Username</span>
+                                        <span className="label-text"> Email</span>
                                     </label>
                                     <input type="text"
                                         className='input '
-                                        placeholder='username'
-                                        onChange={(e) => setUserName(e.target.value)}
+                                        placeholder='email@example.com'
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </div>
                                 <div className='form-control'>

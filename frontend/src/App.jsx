@@ -6,6 +6,8 @@ import SignUpPage from './Pages/SignUpPage'
 import Dashboard from './Pages/Dashboard'
 import StoryPage from './Pages/StoryPage'
 
+export const api = "http://localhost:5001/api/";
+
 const App = () => {
   return (
     <div>
@@ -13,11 +15,9 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/:id" element={<Dashboard />} />
         <Route path="/storyPage" element={<StoryPage />} />
       </Routes>
-
-
     </div>
   )
 }

@@ -1,13 +1,47 @@
 import React from 'react'
 import { useState } from 'react'
 import Navbar from '../Components/Navbar';
+import { api } from '../App';
+import { useNavigate } from 'react-router';
 
 const SignUpPage = () => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setlastName] = useState("");
-    const [username, setusername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [signUpTrouble, setSignUpTrouble] = useState(false);
+
+    const nav = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+
+            const res = await fetch(api + "users", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", },
+                body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    password: password
+                })
+            });
+
+            const { id } = await res.json();
+            console.log(res);
+
+            nav(`/dashboard/${id}`);
+
+
+        } catch (error) {
+            console.log(error);
+            setSignUpTrouble(true);
+            console.log("Trouble signing up in sign up page", error);
+        }
+    }
 
     return (
         <div className='min-h-full'>
@@ -16,7 +50,7 @@ const SignUpPage = () => {
                 <div className='card max-w-2xl mx-auto bg-base-300 mt-5'>
                     <div className='card-body '>
                         <h3 className='card-title'> Sign up</h3>
-                        <form className='form'>
+                        <form onSubmit={(e) => handleSubmit(e)} className='form'>
                             <div className='form-control'>
                                 <label className='label'>
                                     <span className='label-text'> First Name</span>
@@ -37,18 +71,18 @@ const SignUpPage = () => {
                             </div>
                             <div className='form-control'>
                                 <label className='label'>
-                                    <span className='label-text'> Username</span>
+                                    <span className='label-text'> Email</span>
                                 </label>
                                 <input type='text'
                                     className='input'
-                                    onChange={(e) => setusername(e.target.value)}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                             <div className='form-control'>
                                 <label className='label'>
                                     <span className='label-text'> Password</span>
                                 </label>
-                                <input type='text'
+                                <input type='password'
                                     className='input'
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
