@@ -17,6 +17,7 @@ const LoginPage = () => {
         try {
             const params = `email=${email}&password=${password}`;
             const res = await fetch(api + "users/login?" + params);
+            console.log(res);
             const { id } = await res.json();
 
             console.log(id);

@@ -9,6 +9,7 @@ export async function getAllUsers(req, res) {
 export async function getUserByEmailPass(req, res) {
     try {
         const { email, password } = req.query;
+        console.log(email, password);
         const user = await checkIfUserExists(email);
         if (!user || user.password !== password) {
             res.status(404).json({ message: "Account does not exist" });
@@ -18,7 +19,7 @@ export async function getUserByEmailPass(req, res) {
             res.status(404).json({ message: "Password is incorrect" });
             return;
         }
-        console.log(user._id.toString());
+        console.log("user ID", user._id.toString());
         res.status(200).json({ id: user._id.toString() });
 
     } catch (error) {
@@ -30,7 +31,7 @@ export async function getUserByEmailPass(req, res) {
 export async function getUserByID(req, res) {
     try {
         const { id } = req.params;
-
+        console.log("id", id);
         const user = await User.findById(id);
         if (!user)
             return res.status(404).json({ message: "User does not exist" });
@@ -70,4 +71,25 @@ async function checkIfUserExists(email) {
         }
     });
     return userFound;
-}   
+}
+
+export async function updateUser(req, res) {
+    try {
+        const { id } = req.params;
+        const { firstName, lastName, email, password, stories } = req.body;
+
+        console.log("stories:", stories, password);
+
+        const updatedUser = await User.findByIdAndUpdate(id, { firstName, lastName, email, password, stories });
+
+
+        if (!updatedUser)
+            return res.status(404).json({ message: "User not found" });
+
+        res.status(200).json(updatedUser);
+
+    } catch (error) {
+        console.log("Could not update user", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}

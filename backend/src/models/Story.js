@@ -13,6 +13,10 @@ export const storySchema = mongoose.Schema(
         text: {
             type: String,
             required: true
+        },
+        userID: {
+            type: String,
+            required: true
         }
     },
     { timestamps: true }

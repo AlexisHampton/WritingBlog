@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import cors from "cors"
 import { connectDB } from "./config/mongodb.js";
 import userRoutes from "./routes/userRoutes.js"
+import storyRoutes from "./routes/storyRoutes.js";
 
 dotenv.config();
 
@@ -14,7 +15,9 @@ app.use(
         origin: "http://localhost:5173"
     })
 );
+
 app.use("/api/users", userRoutes);
+app.use("/api/stories", storyRoutes);
 
 
 
