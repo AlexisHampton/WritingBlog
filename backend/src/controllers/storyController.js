@@ -25,8 +25,8 @@ export async function getStoryByID(req, res) {
 
 export async function createNewStory(req, res) {
     try {
-        const { title, blurb, text, userID } = req.body;
-        const newStory = new Story({ title, blurb, text, userID });
+        const { title, blurb, text, userID, author } = req.body;
+        const newStory = new Story({ title, blurb, text, userID, author });
         const savedStory = await newStory.save();
         res.status(200).json(savedStory);
 

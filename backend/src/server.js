@@ -20,7 +20,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/stories", storyRoutes);
 
 
-
 connectDB().then(() => {
     app.listen(5001, (req, res) => {
         console.log("Listenting on 5001");

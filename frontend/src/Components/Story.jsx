@@ -10,10 +10,10 @@ const Story = ({ story }) => {
     }
 
     return (
-        <div className='container mx-auto mt-16 p-5'>
-            <div className='max-w-4xl mx-auto bg-base-100'>
+        <div className='flex-1 h-full container mx-auto mt-16 p-5'>
+            <div className='max-w-4xl h-full mx-auto bg-base-100'>
                 <textarea type='text'
-                    className='min-h-screen min-w-full bg-base-100 outline-none resize-none p-12'
+                    className='h-full min-w-full bg-base-100 outline-none resize-none p-12'
                     value={text}
                     onChange={(e) => changeText(e)}
                 />

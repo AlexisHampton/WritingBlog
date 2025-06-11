@@ -81,7 +81,7 @@ const StoryPage = () => {
 
 
     return (
-        <div className='bg-base-300'>
+        <div className='bg-base-300 flex flex-col h-screen' >
             <StoryTitleBar story={story} handleSave={handleSave} />
             <Story story={story} />
         </div>

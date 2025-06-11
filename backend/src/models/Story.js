@@ -17,6 +17,10 @@ export const storySchema = mongoose.Schema(
         userID: {
             type: String,
             required: true
+        },
+        author: {
+            type: String,
+            required: true
         }
     },
     { timestamps: true }

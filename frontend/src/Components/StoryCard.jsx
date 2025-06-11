@@ -6,10 +6,16 @@ const StoryCard = ({ story, setStories }) => {
 
     const handleDeleteStory = async (e) => {
         e.preventDefault();
+        if (!window.confirm("Are you sure you want to delete this story?")) return false;
         try {
             const res = await fetch(api + "stories/" + story._id);
 
             if (res.status == "200") {
+                //delete the story
+                const storyRes = await fetch(api + "stories/" + story._id, {
+                    method: "DELETE"
+                });
+
                 //delete from user
                 const userRes = await fetch(api + "users/" + story.userID);
                 const user = await userRes.json();

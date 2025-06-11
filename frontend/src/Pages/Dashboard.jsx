@@ -61,7 +61,8 @@ const Dashboard = () => {
                     title: "Untitled",
                     text: " ",
                     blurb: " ",
-                    userID: user._id.toString()
+                    userID: user._id.toString(),
+                    author: `${user.firstName} ${user.lastName}`
                 })
             });
 
@@ -97,13 +98,16 @@ const Dashboard = () => {
     return (
         <div>
             <div className='fixed w-1/6 '>
-                <ProfileDashboardBar name={`${user.firstName}  ${user.lastName}`} handleNewStory={handleNewStory} />
+                <ProfileDashboardBar user={user} handleNewStory={handleNewStory} />
             </div>
             <div className='w-5/6 ml-auto'>
                 <div className=' bg-secondary p-4 flex justify-center mx-auto '>
                     <h3 className='card-title text-3xl mx-auto'> Stories </h3>
                 </div>
-
+                {stories.length == 0 &&
+                    <div>
+                        <h3 className="text-center mt-12 text-lg "> Create a new story to start writing</h3>
+                    </div>}
                 {stories.length > 0 &&
                     <div className='m-10' >
                         {stories.map(story => (<StoryCard key={story._id} story={story} setStories={setStories} />))}
