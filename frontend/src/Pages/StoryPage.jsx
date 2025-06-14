@@ -4,6 +4,8 @@ import StoryTitleBar from '../Components/StoryTitleBar';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { api } from '../App';
+import { saveStory } from '../utils/saveStory';
+import Loading from '../Components/Loading';
 
 const StoryPage = () => {
     const [story, setStory] = useState(null);
@@ -13,43 +15,15 @@ const StoryPage = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
+        const storyData = {
+            title: story.title,
+            text: story.text,
+            userID: story.userID,
+            blurb: story.text.substring(0, 40)
+        };
+
         try {
-            const res = await fetch(api + "stories/" + id, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    title: story.title,
-                    text: story.text,
-                    userID: story.userID,
-                    blurb: story.text.substring(0, 40)
-                })
-            });
-
-            const savedStory = await res.json();
-
-            if (res.status == "200") {
-                const userRes = await fetch(api + "users/" + story.userID);
-                const user = await userRes.json();
-
-                user.stories = user.stories.map(s => {
-                    if (s._id === savedStory._id)
-                        return savedStory
-                    return s
-                })
-
-                const updateUserRes = await fetch(api + "users/" + user._id.toString(), {
-                    method: "PUT",
-                    headers: { "Content-Type": " application/json" },
-                    body: JSON.stringify({
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        email: user.email,
-                        password: user.password,
-                        stories: user.stories
-                    })
-                });
-
-            }
+            saveStory(id, storyData, story);
         } catch (error) {
             console.log("Cannot save story", error);
         }
@@ -74,14 +48,14 @@ const StoryPage = () => {
         getStory();
     }, []);
 
-    if (loading) {
-        return (<div> Loading...</div>)
-    }
+    if (loading)
+        return <Loading />
+
 
 
 
     return (
-        <div className='bg-base-300 flex flex-col h-screen' >
+        <div className='bg-base-200 flex flex-col h-screen' >
             <StoryTitleBar story={story} handleSave={handleSave} />
             <Story story={story} />
         </div>

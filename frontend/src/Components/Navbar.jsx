@@ -8,8 +8,8 @@ const Navbar = ({ redirect }) => {
 
     return (
         <div className='bg-secondary'>
-            <div className='mx-auto max-w-6xl p-4'>
-                <div className='flex justify-between text-center'>
+            <div className='mx-auto w-screen p-4'>
+                <div className='flex justify-between mx-auto'>
                     <Link to={redirect}>
                         <h3 className='card-title text-3xl'> Writing Blog</h3>
                     </Link>

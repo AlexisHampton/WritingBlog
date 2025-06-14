@@ -25,8 +25,8 @@ export async function getStoryByID(req, res) {
 
 export async function createNewStory(req, res) {
     try {
-        const { title, blurb, text, userID, author } = req.body;
-        const newStory = new Story({ title, blurb, text, userID, author });
+        const { title, blurb, text, userID, author, published } = req.body;
+        const newStory = new Story({ title, blurb, text, userID, author, published });
         const savedStory = await newStory.save();
         res.status(200).json(savedStory);
 
@@ -39,8 +39,8 @@ export async function createNewStory(req, res) {
 export async function updateStory(req, res) {
     try {
         const { id } = req.params;
-        const { title, blurb, text } = req.body;
-        const updatedStory = await Story.findByIdAndUpdate(id, { title, blurb, text }, { new: true });
+        const { title, blurb, text, published } = req.body;
+        const updatedStory = await Story.findByIdAndUpdate(id, { title, blurb, text, published }, { new: true });
         if (!updatedStory) {
             return res.status(404).json({ message: "Cannot find story" });
         }

@@ -21,6 +21,10 @@ export const storySchema = mongoose.Schema(
         author: {
             type: String,
             required: true
+        },
+        published: {
+            type: Boolean,
+            required: false
         }
     },
     { timestamps: true }

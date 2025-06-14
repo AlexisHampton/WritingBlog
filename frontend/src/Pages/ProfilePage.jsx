@@ -3,6 +3,7 @@ import ProfileTitleBar from '../Components/ProfileTitleBar'
 import { useNavigate, useParams } from 'react-router';
 import { api } from '../App';
 import Navbar from '../Components/Navbar';
+import Loading from '../Components/Loading';
 
 const ProfilePage = () => {
 
@@ -41,9 +42,7 @@ const ProfilePage = () => {
     }, [id]);
 
     if (loading) {
-        return (
-            <p>Loading... </p>
-        );
+        return <Loading />
     }
 
     const handleSubmit = async (e) => {

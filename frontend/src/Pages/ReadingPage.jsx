@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import { api } from '../App';
 import { Link, useParams } from 'react-router';
+import Loading from '../Components/Loading';
 
 const ReadingPage = () => {
 
@@ -26,7 +27,7 @@ const ReadingPage = () => {
         findStory();
     }, [])
 
-    if (loading) return <div> Loading...</div>
+    if (loading) return <Loading />
 
 
     return (

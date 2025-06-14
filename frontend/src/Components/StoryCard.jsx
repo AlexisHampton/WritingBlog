@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { api } from '../App';
 
 const StoryCard = ({ story, setStories }) => {
+
+    const nav = useNavigate();
 
     const handleDeleteStory = async (e) => {
         e.preventDefault();
@@ -47,17 +49,22 @@ const StoryCard = ({ story, setStories }) => {
     }
 
     return (
-        <Link to={`/storyPage/${story._id}`} className=' card bg-primary m-10'>
+        <div className=' card bg-primary m-10'>
             <div className='card-body'>
                 <div className='flex justify-between'>
-                    <h3 className='card-title'> {story.title}</h3>
-                    <button onClick={(e) => handleDeleteStory(e)} className='btn btn-error'>
-                        <span> Delete</span>
-                    </button>
+                    <Link to={`/storyPage/${story._id}`} className='card-title underline'> {story.title}</Link>
+                    <div >
+                        <Link to={`/storyinfo/${story._id}`} className='btn btn-secondary mx-4'>
+                            <span className='text-neutral'> Edit Info</span>
+                        </Link>
+                        <button onClick={(e) => handleDeleteStory(e)} className='btn btn-error'>
+                            <span> Delete</span>
+                        </button>
+                    </div>
                 </div>
                 <h4 className='text-wrap'> {story.blurb} </h4>
             </div>
-        </Link>
+        </div>
     )
 }
 

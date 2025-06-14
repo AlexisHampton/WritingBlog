@@ -4,6 +4,7 @@ import NavbarLogSignin from '../Components/NavbarLogSignin'
 import { Link } from 'react-router'
 import HomepageStoryCard from '../Components/HomepageStoryCard'
 import { api } from '../App'
+import Loading from '../Components/Loading'
 
 const HomePage = () => {
 
@@ -13,10 +14,16 @@ const HomePage = () => {
     useEffect(() => {
         const findAllStories = async () => {
             try {
+                const publishedStories = [];
                 const res = await fetch(api + "stories/");
                 const data = await res.json();
-                setStories(data);
-                console.log(data);
+                data.forEach(s => {
+                    if (s.published)
+                        publishedStories.push(s);
+                });
+
+                setStories(publishedStories);
+                console.log(publishedStories);
             } catch (error) {
                 console.log("Error finding all users", error);
             }
@@ -28,7 +35,7 @@ const HomePage = () => {
     }, [])
 
     if (loading)
-        return (<div> Loading...</div>)
+        return <Loading />
 
 
     return (

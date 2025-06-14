@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { api } from '../App'
 import { useNavigate, useParams } from 'react-router'
+import Loading from '../Components/Loading'
 
 const Dashboard = () => {
 
@@ -38,13 +39,9 @@ const Dashboard = () => {
 
     }, [id]);
 
-    if (loading) {
-        return (
-            <div>
-                <p> Loading...</p>
-            </div>
-        )
-    }
+    if (loading)
+        return <Loading />
+
 
 
 
@@ -62,7 +59,8 @@ const Dashboard = () => {
                     text: " ",
                     blurb: " ",
                     userID: user._id.toString(),
-                    author: `${user.firstName} ${user.lastName}`
+                    author: `${user.firstName} ${user.lastName}`,
+                    published: false
                 })
             });
 
