@@ -1,6 +1,10 @@
 # WritingBlog
 
-A writing blog in progress made using the MERN stack
+A writing blog in progress made using the MERN stack.
+
+
+
+Users can read other users' stories and write their own stories. 
 
 
 ### Technologies Used:
