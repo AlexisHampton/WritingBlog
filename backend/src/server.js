@@ -4,10 +4,13 @@ import cors from "cors"
 import { connectDB } from "./config/mongodb.js";
 import userRoutes from "./routes/userRoutes.js"
 import storyRoutes from "./routes/storyRoutes.js";
+import path from "path";
 
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 5001;
+const __dirname = path.resolve();
 
 app.use(express.json());
 
@@ -31,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 connectDB().then(() => {
-    app.listen(5001, (req, res) => {
-        console.log("Listenting on 5001");
+    app.listen(PORT, (req, res) => {
+        console.log("Listenting on ", PORT);
     });
 });
