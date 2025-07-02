@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfileDashboardBar from '../Components/ProfileDashboardBar.jsx'
-import StoryCard from '../Components/storyCard.jsx'
+import StoryCard from '../Components/StoryCard.jsx'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { api } from '../App'
