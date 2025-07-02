@@ -38,12 +38,14 @@ const ReadingPage = () => {
                         <Link to={"/"} className='btn btn-secondary text-black mx-5'>
                             <span> {"<- back"}</span>
                         </Link>
-                        <h3 className='card-title text-neutral text-3xl'>
-                            {story.title}
-                        </h3>
-                        <h4 className='card-title text-sm mx-4'>
-                            {story.author}
-                        </h4>
+                        <div>
+                            <h3 className='card-title text-neutral text-3xl'>
+                                {story.title}
+                            </h3>
+                            <h4 className='font-bold text-orange-950 underline'>
+                                {story.author}
+                            </h4>
+                        </div>
                     </div>
                 </div>
             </div>
