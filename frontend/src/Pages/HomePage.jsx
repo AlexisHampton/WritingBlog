@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
-import NavbarLogSignin from '../Components/NavbarLogSignin'
+import NavbarLogSignin from '../Components/NavbarLogSignin.jsx'
 import { Link } from 'react-router'
-import HomepageStoryCard from '../Components/HomepageStoryCard'
+import HomepageStoryCard from '../Components/HomepageStoryCard.jsx'
 import { api } from '../App'
 import Loading from '../Components/Loading'
 

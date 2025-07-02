@@ -1,11 +1,11 @@
 import React from 'react'
-import ProfileDashboardBar from '../Components/ProfileDashboardBar'
-import StoryCard from '../Components/storyCard'
+import ProfileDashboardBar from '../Components/ProfileDashboardBar.jsx'
+import StoryCard from '../Components/storyCard.jsx'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { api } from '../App'
 import { useNavigate, useParams } from 'react-router'
-import Loading from '../Components/Loading'
+import Loading from '../Components/Loading.jsx'
 
 const Dashboard = () => {
 
