@@ -8,7 +8,7 @@ Users can read other users' stories and write their own stories.
 
 
 ### Technologies Used:
-- MongoDB, Express, Node.js, React
+- MongoDB, Express, Node.js, React, Tailwind CSS, DaisyUI
 
 ### Sample logins: 
 - joonie@gmail.com joons
