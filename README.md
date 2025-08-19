@@ -2,7 +2,7 @@
 
 A writing blog in progress made using the MERN stack.
 
-
+deploy link: https://writingblog.onrender.com/
 
 Users can read other users' stories and write their own stories. 
 
