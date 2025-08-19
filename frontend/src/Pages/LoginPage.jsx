@@ -15,10 +15,9 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-
             const params = `email=${email.trim()}&password=${password}`;
             const res = await fetch(api + "users/login?" + params);
-            console.log(res);
+            console.log("Login page", res);
             const { id } = await res.json();
 
             console.log(id);

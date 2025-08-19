@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Navbar from "../Components/Navbar";
 import { api } from "../App";
 import { saveStory } from "../utils/saveStory";
@@ -18,6 +18,8 @@ const StoryInfo = () => {
     const [isPublished, setPublished] = useState(false);
 
     const { id } = useParams();
+
+    const nav = useNavigate();
 
     useEffect(() => {
         const findStory = async () => {
@@ -54,6 +56,7 @@ const StoryInfo = () => {
             console.log("Cannot save story", error);
         } finally {
             setSaving(false);
+            nav(`/dashboard/${story.userID}`);
         }
     }
 
